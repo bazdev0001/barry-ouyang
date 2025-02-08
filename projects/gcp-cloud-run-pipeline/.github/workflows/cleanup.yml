@@ -1,0 +1,56 @@
+name: 'Cleanup'
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/cleanup.yml'
+  push:
+    paths:
+      - '.github/workflows/cleanup.yml'
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: 'read'
+  id-token: 'write'
+
+jobs:
+  cleanup:
+    runs-on: 'ubuntu-latest'
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - 'jobs'
+          - 'services'
+    name: 'Cleanup (${{ matrix.target }})'
+
+    steps:
+      - uses: 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' # ratchet:actions/checkout@v4
+
+      - uses: 'google-github-actions/auth@v3' # ratchet:exclude
+        with:
+          workload_identity_provider: '${{ vars.WIF_PROVIDER_NAME }}'
+          service_account: '${{ vars.SERVICE_ACCOUNT_EMAIL }}'
+
+      - uses: 'google-github-actions/setup-gcloud@v2' # ratchet:exclude
+        with:
+          version: 'latest'
+
+      - name: 'Delete ${{ matrix.target }}'
+        env:
+          PROJECT_ID: '${{ vars.PROJECT_ID }}'
+          TARGET: '${{ matrix.target }}'
+        run: |-
+          gcloud config set core/project "${PROJECT_ID}"
+          gcloud config set run/region "us-central1"
+
+          # List and delete all jobs/services that were deployed 30 minutes ago
+          # or earlier. The date math here is a little weird, but we're looking
+          # for deployments "earlier than" 30 minutes ago, so it's less than
+          # since time increases.
+          (IFS=$'\n'; for NAME in $(gcloud run "${TARGET}" list --format='value(name)' --filter='metadata.creationTimestamp < "-pt30m"'); do
+            echo "Deleting ${NAME}..."
+            gcloud run "${TARGET}" delete "${NAME}" --quiet --async
+          done)

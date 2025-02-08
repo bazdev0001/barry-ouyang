@@ -1,0 +1,60 @@
+{
+  "name": "deploy-cloudrun",
+  "version": "3.0.1",
+  "description": "Github Action: Deploy to Google Cloud Run",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist/ && ncc build -m src/main.ts -o dist/main",
+    "docs": "./node_modules/.bin/actions-gen-readme",
+    "lint": "eslint .",
+    "format": "eslint . --fix",
+    "test": "node --require ts-node/register --test-reporter spec --test tests/unit/**/*.test.ts",
+    "e2e-tests": "node --require ts-node/register --test-reporter spec --test tests/e2e/**/*.test.ts"
+  },
+  "engines": {
+    "node": ">= 24.x",
+    "npm": ">= 11.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/google-github-actions/deploy-cloudrun.git"
+  },
+  "keywords": [
+    "actions",
+    "google",
+    "cloud run",
+    "cloud",
+    "run",
+    "containers"
+  ],
+  "author": "Google LLC",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/google-github-actions/deploy-cloudrun/issues"
+  },
+  "homepage": "https://github.com/google-github-actions/deploy-cloudrun#readme",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/tool-cache": "^2.0.2",
+    "@google-github-actions/actions-utils": "^1.0.1",
+    "@google-github-actions/setup-cloud-sdk": "^2.0.0",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.34.0",
+    "@types/node": "^24.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.42.0",
+    "@typescript-eslint/parser": "^8.42.0",
+    "@vercel/ncc": "^0.38.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint": "^9.34.0",
+    "googleapis": "^159.0.0",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript-eslint": "^8.42.0",
+    "typescript": "^5.9.2"
+  }
+}
