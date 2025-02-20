@@ -499,3 +499,4 @@ Set version in two files:
 
 * `terragrunt/.terragrunt-version` - version for `tgenv`
 * `terragrnt/terragrunt.hcl`
+# Terratest examples for validation
