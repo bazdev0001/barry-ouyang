@@ -1,0 +1,38 @@
+---
+name: Security CodeQL
+
+on:
+  schedule:
+    - cron: 0 3 * * *
+
+permissions:
+  security-events: write
+  actions: read
+  contents: read
+
+jobs:
+  codeql:
+    if: ${{ ! github.event.repository.private }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            api.github.com:443
+            files.pythonhosted.org:443
+            github.com:443
+            pypi.org:443
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Setup Dependencies
+        uses: ./.github/actions/setup-poetry
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@7211b7c8077ea37d8641b6271f6a365a22a5fbfa # v4.36.0
+        with:
+          languages: python
+          setup-python-dependencies: false
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@b623f5fd572a69d335c9da3487c1ce53741a09bf # # tag=v2.1.21
