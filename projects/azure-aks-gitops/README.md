@@ -129,3 +129,4 @@ argocd app sync root
 - ArgoCD 2.9+
 - Helm 3.x
 - Azure DevOps (or GitHub Actions — pipelines are portable)
+# ArgoCD upgrade notes 2.10
