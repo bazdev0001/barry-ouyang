@@ -132,3 +132,4 @@ checks:
 - Python 3.10+
 - Prometheus (for health checks against metrics)
 - Nginx Ingress Controller
+# Traffic splitting improvements
