@@ -141,3 +141,4 @@ helm install observability ./helm -f helm/values-prod.yaml
 - Docker and Docker Compose (local)
 - Python 3.10+ (for SDK)
 - 4GB RAM minimum for local stack (Grafana + Loki are hungry)
+# OpenTelemetry SDK upgrade to 1.30
