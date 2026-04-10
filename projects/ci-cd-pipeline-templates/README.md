@@ -142,3 +142,4 @@ cp github-actions/python-ci.yml YOUR_PROJECT/.github/workflows/ci.yml
 - For Kubernetes templates: kubectl configured, Helm 3.x
 - For Docker templates: Docker Hub or private registry
 - Python 3.10+ (for Python templates)
+# GitHub OIDC auth improvements
