@@ -127,3 +127,4 @@ module "eks" {
 I've made strong defaults here because consistency matters more than flexibility in most cases. If you need to deviate from the defaults, every variable has an escape hatch. But I've found that 90% of the time, the defaults are what you want in production.
 
 The one thing I won't compromise on: IRSA over node-level IAM. I've seen too many incidents where a compromised container escalated to full EC2 instance permissions. With IRSA, the blast radius is per-pod, per-role.
+# Karpenter nodepool tuning for GPU workloads
