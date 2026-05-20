@@ -200,3 +200,4 @@ A curated collection of DevOps, SRE, and platform engineering projects built acr
 - SARIF integration gave security team visibility without changing developer workflow
 
 **Year:** 2026
+# Portfolio refresh — updated outcomes and metrics
