@@ -1,4 +1,4 @@
-# Portfolio Overview — Barry Ouyang
+# Portfolio Overview — Barry Au Yeung
 
 A curated collection of DevOps, SRE, and platform engineering projects built across 8+ years in production infrastructure. These aren't toy examples — each one came out of a real operational problem that needed solving.
 

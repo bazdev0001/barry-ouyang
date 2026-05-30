@@ -1,4 +1,4 @@
-# Barry Ouyang
+# Barry Au Yeung
 
 **Senior DevOps Engineer | SRE | Cloud Infrastructure | Open Source**
 
@@ -70,4 +70,4 @@ PostgreSQL, MySQL, Redis, DynamoDB, MongoDB
 ## Contact
 
 - GitHub: [github.com/bazdev0001](https://github.com/bazdev0001)
-- Email: barry@barry-ouyang.dev
+- Email: barry@barry-au-yeung.dev
