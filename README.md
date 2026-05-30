@@ -1,4 +1,4 @@
-# Barry Au Yeung
+# Barry Au-Yeung
 
 **Senior DevOps Engineer | SRE | Cloud Infrastructure | Open Source**
 
